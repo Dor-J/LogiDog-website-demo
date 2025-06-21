@@ -18,6 +18,7 @@ function Hero() {
                 <Image
                     src={heroSectionImg}
                     alt="image of logistics and shipments"
+                    priority
                 />
             </div>
         </section>
