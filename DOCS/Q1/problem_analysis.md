@@ -27,6 +27,8 @@
 > (For example: "If the delivery date is within X upcoming days, and the shipment is
 > still in stage Y, then trigger an alert.")
 
+     The flowchart is presented in the ShimpentsDelayFlows componet
+
 > What types of data (existing or to be collected) could serve as
 > strong indicators for accurate delay prediction? Explain the
 > rationale for each data type.
