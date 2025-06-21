@@ -56,10 +56,10 @@ const ShipmentDelayFlow: React.FC = () => {
     return (
         <section className="mt-auto flex w-full flex-col space-y-4">
             <div className="mx-auto mt-4 mb-8">
-                <h2 className="mb-2 text-2xl font-bold">
+                <h2 className="mb-2 text-2xl font-bold md:text-3xl">
                     Early-Delay Flowchart
                 </h2>
-                <p className="text-sm text-gray-700">
+                <p className="text-base text-gray-700">
                     Description outlining proposed logic for early delay
                     identification
                 </p>
@@ -80,9 +80,7 @@ const ShipmentDelayFlow: React.FC = () => {
                     <div className="flex flex-col items-center gap-4 md:flex-row">
                         {/* YES → END */}
                         <div className="flex flex-col items-center gap-2">
-                            <span className="text-sm font-semibold md:hidden">
-                                (Yes)
-                            </span>
+                            <span className="text-sm font-semibold">(Yes)</span>
                             <div className="hidden h-5 w-5 text-gray-500 md:block">
                                 <ArrowRightIcon />
                             </div>
@@ -97,9 +95,7 @@ const ShipmentDelayFlow: React.FC = () => {
 
                         {/* NO - Compute delta */}
                         <div className="flex flex-col items-center gap-2">
-                            <span className="text-sm font-semibold md:hidden">
-                                (No)
-                            </span>
+                            <span className="text-sm font-semibold">(No)</span>
                             <div className="hidden h-5 w-5 text-gray-500 md:block">
                                 <ArrowRightIcon />
                             </div>
@@ -126,14 +122,12 @@ const ShipmentDelayFlow: React.FC = () => {
                     <div className="h-6 w-6 text-gray-500">
                         <ArrowDownIcon />
                     </div>
-                    <FlowChartItem>4. Is D ≤ MinDays(Stage)?</FlowChartItem>
+                    <FlowChartItem>4. Is delta ≤ MinDays(Stage)?</FlowChartItem>
                     {/* Yes / No split */}
                     <div className="flex flex-col items-center gap-4 md:flex-row">
                         {/* YES - High Risk */}
                         <div className="flex flex-col items-center gap-2">
-                            <span className="text-sm font-semibold md:hidden">
-                                (Yes)
-                            </span>
+                            <span className="text-sm font-semibold">(Yes)</span>
                             <div className="hidden h-5 w-5 text-gray-500 md:block">
                                 <ArrowRightIcon />
                             </div>
@@ -153,9 +147,7 @@ const ShipmentDelayFlow: React.FC = () => {
 
                         {/* NO - Is stagnant? */}
                         <div className="flex flex-col items-center gap-2">
-                            <span className="text-sm font-semibold md:hidden">
-                                (No)
-                            </span>
+                            <span className="text-sm font-semibold">(No)</span>
                             <div className="hidden h-5 w-5 text-gray-500 md:block">
                                 <ArrowRightIcon />
                             </div>
@@ -204,6 +196,9 @@ const ShipmentDelayFlow: React.FC = () => {
             {/*  Threshold Table  */}
             <div className="mx-auto mt-4 overflow-x-auto p-4">
                 <h3 className="mb-3 text-2xl font-semibold">Threshold Table</h3>
+                <p className="mb-3 text-gray-700">
+                    *The values presented here are rough estimates
+                </p>
 
                 <table className="min-w-max divide-y divide-gray-300 text-sm">
                     <thead className="bg-gray-100">
