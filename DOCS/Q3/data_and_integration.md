@@ -13,6 +13,8 @@
 
     The data is use in the Dashbpard page and as a json file in this folder
 
+    Additionaly the shipment data is displayed using the shipment modal that renders the shipment item
+
 > API Design: Please design an API that will serve the client. Focus on input and
 > output format and communication protocol.
 
