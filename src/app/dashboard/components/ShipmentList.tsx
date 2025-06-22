@@ -4,9 +4,10 @@ import type { Shipment } from '~/models/shipment'
 interface Props {
     shipments: Shipment[]
     loading: boolean
+    onOpenModal: (shipment: Shipment) => void
 }
 
-const ShipmentList: React.FC<Props> = ({ shipments, loading }) => {
+const ShipmentList: React.FC<Props> = ({ shipments, loading, onOpenModal }) => {
     if (loading) {
         return (
             <tbody>
@@ -32,7 +33,7 @@ const ShipmentList: React.FC<Props> = ({ shipments, loading }) => {
     }
 
     return (
-        <tbody className="min-w-[600px] table-fixed divide-y divide-gray-200">
+        <tbody className="min-w-[500px] table-fixed divide-y divide-gray-200">
             {shipments.map((s) => (
                 <tr key={s._id}>
                     <td className="px-3 py-2">{s._id}</td>
@@ -51,11 +52,25 @@ const ShipmentList: React.FC<Props> = ({ shipments, loading }) => {
                             {s.riskLevel}
                         </span>
                     </td>
-                    <td className="px-3 py-2">{s.currentStage}</td>
-                    <td className="px-3 py-2">{s.originCountry}</td>
-                    <td className="px-3 py-2">{s.destinationCountry}</td>
-                    <td className="px-3 py-2">
+                    <td className="hidden px-3 py-2 sm:table-cell">
+                        {s.currentStage}
+                    </td>
+                    <td className="hidden px-3 py-2 md:table-cell">
+                        {s.originCountry}
+                    </td>
+                    <td className="hidden px-3 py-2 md:table-cell">
+                        {s.destinationCountry}
+                    </td>
+                    <td className="hidden px-3 py-2 md:table-cell">
                         {new Date(s.deliveryPlanned ?? '').toLocaleDateString()}
+                    </td>
+                    <td>
+                        <button
+                            onClick={() => onOpenModal(s)}
+                            className="rounded-lg bg-sky-300 px-3 py-2 text-black transition-all hover:bg-sky-400 active:scale-95"
+                        >
+                            View
+                        </button>
                     </td>
                 </tr>
             ))}
