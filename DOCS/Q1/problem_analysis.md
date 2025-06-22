@@ -52,14 +52,23 @@
 
     Dates (if date is null it means that the stage wasnt reached ):
         1. Purchess date
-        2. Dispatch date shipment start date
-        3. Arrive at designation country
-        4. Arrive to customs
-        5. Customs detain
-        6. Customs clear
-        7. Transport to logistic center
-        8. Transport to consumer
-        9. User pickup - shipment delivered
+        2. Dispatch date shipment start date - Planned (apon initial dispach)
+        3. Dispatch date shipment start date - Actual Timestamp
+        4. Arrive at designation country - Planned (apon initial dispach)
+        5. Arrive at designation country - Actual Timestamp
+        6. Arrive to customs - Planned (apon initial dispach)
+        7. Arrive to customs - Actual Timestamp
+        8. Customs detain
+        9.  Customs clear - Planned (apon initial dispach)
+        10. Customs clear - Actual Timestamp
+        11. Transport to logistic center - Planned (apon initial dispach)
+        12. Transport to logistic center - Actual Timestamp
+        13. Transport to consumer - Planned (apon initial dispach)
+        14. Transport to consumer - Actual Timestamp
+        15. User pickup - shipment delivered - Planned (apon initial dispach)
+        16. User pickup - shipment delivered - Actual Timestamp
+        17. ETA at designation country
+        18. ETA revision
 
     External Context - flags on shipment creation
         1. Weather along route (seven-day forecast & severe alerts)
