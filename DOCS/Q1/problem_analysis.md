@@ -17,14 +17,14 @@
             e. shimpment has left customs and now is transported on land and is delayed by land transportation reasons like bad weather, lack of enough tranporters trucks
         2. Dividing the problems operational factors and external factors in a table
 
-| Stage                  | Operational factors              | External factors        |
-| :--------------------- | :------------------------------- | :---------------------- |
-| Pre-shipment           | Lack of staff to handle shipment | Regulation              |
-| During shipment        | Sea traffic                      | Bad weather             |
-| Arrival pre-customs    | Local logistic staffing problems | Port being too crowded  |
-| At customs             | Lacks of documentation           | Regular examinatnion    |
-| Transport post-customs | Lack of enough tranporters       | Bad weather             |
-| Local land Transport   |                                  | Long distance from port |
+| Stage                  | Operational factors                     | External factors        |
+| :--------------------- | :-------------------------------------- | :---------------------- |
+| Pre-shipment           | Lack of staff to handle shipment        | Regulation              |
+| During shipment        | Sea traffic                             | Bad weather             |
+| Arrival pre-customs    | Local logistic staffing problems        | Port being too crowded  |
+| At customs             | Carrier reliability, Equipment shortage | Regular examinatnion    |
+| Transport post-customs | Lack of enough tranporters              | Bad weather             |
+| Local land Transport   |                                         | Long distance from port |
 
 > Early Delay Identification Logic: Present a simple flowchart or a clear textual
 > description outlining your proposed logic for early delay identification.
@@ -32,6 +32,8 @@
 > still in stage Y, then trigger an alert.")
 
      The flowchart is presented in the ShimpentsDelayFlows componet
+
+     If ETA – now ≤ MinBuffer(stage) trigger HIGH
 
 > What types of data (existing or to be collected) could serve as
 > strong indicators for accurate delay prediction? Explain the
@@ -83,3 +85,8 @@
     Rule-based mechanism are better for realtime analysis of the events data sent on each stage in the shipment life cycle.
     The rules based mechnism can also be optimized  after collecting enough data, by optimized the thresholds of potential delayed shipment and trigger alerts
     Dynamic analysis is better use on bigger data set and done "offline" on clusters using kafka and pyspark or a different provider, analysing the data collected for a large data-warehouse or data-lake can provide deeper insights on delay detection and prevention also allowing to preform a/b testing on real data collected to determine if actions taken to prevent delay have the desired effect and this be able to make data driven decisions.
+
+| Stage                   | Pros        | Cons               |
+| :---------------------- | :---------- | :----------------- |
+| Rule-based mechanism    | Explainable | Brittle            |
+| Dynamic analysis and ML | Adaptive    | Needs data & MLOps |
