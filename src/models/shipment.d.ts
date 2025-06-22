@@ -26,6 +26,7 @@ export interface Shipment {
     // Party IDs or codes
     buyerId: string
     sellerId: string
+    shipmentId: string
 
     // Geography
     originCountry: string // ISO-2 or ISO-3 code
@@ -79,6 +80,7 @@ export interface Shipment {
  * {
   "buyerId": "B12345",
   "sellerId": "S67890",
+  "shipmentId": "SHIP-00000000001",
 
   "originCountry": "CN",
   "originPort": "CNSHA",
