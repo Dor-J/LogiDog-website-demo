@@ -16,7 +16,7 @@ const ShipmentIndex: React.FC<Props> = ({
 }) => {
     return (
         <section className="max-w-full overflow-x-auto">
-            <table className="min-w-[500px] table-fixed divide-y divide-gray-300 text-sm">
+            <table className="min-w-[300px] table-fixed divide-y divide-gray-300 text-sm md:min-w-[500px]">
                 <thead className="bg-gray-100">
                     <tr>
                         <th className="px-3 py-2 text-left">ID</th>

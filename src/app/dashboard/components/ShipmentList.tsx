@@ -33,7 +33,7 @@ const ShipmentList: React.FC<Props> = ({ shipments, loading, onOpenModal }) => {
     }
 
     return (
-        <tbody className="min-w-[500px] table-fixed divide-y divide-gray-200">
+        <tbody className="min-w-[300px] table-fixed divide-y divide-gray-200 md:min-w-[500px]">
             {shipments.map((s) => (
                 <tr key={s._id}>
                     <td className="px-3 py-2">{s._id}</td>
