@@ -11,6 +11,8 @@
     2. Filtering and Search Capabilities
     3. Visual Indicators.
 
+        Dashboard in displayed in the dashboard page
+
 > Real-time Data Updates: Choose a communication approach to
 > ensure the dashboard data is as up-to-date as possible. Explain
 > your chosen approach and justify why it's the best fit for this
