@@ -5,12 +5,24 @@ import type { Shipment } from '~/models/shipment'
 import Filter, { type FilterValues } from './Filter'
 import { storageService } from '~/services/async-storage.service'
 import ShipmentIndex from './ShipmentIndex'
+import ShipmentModal from './ShipmentModal'
 
 const ENTITY_TYPE = 'shipments'
 
 function AtRiskShipments() {
     const [shipments, setShipments] = useState<Shipment[]>([])
     const [filtered, setFiltered] = useState<Shipment[]>([])
+    const [selectedShipment, setSelectedShipment] = useState<Shipment | null>(
+        null
+    )
+
+    const openModal = (shipment: Shipment) => {
+        setSelectedShipment(shipment)
+    }
+
+    const closeModal = () => {
+        setSelectedShipment(null)
+    }
     const [loading, setLoading] = useState(true)
 
     // Load from localStorage or JSON file
@@ -65,9 +77,19 @@ function AtRiskShipments() {
 
     return (
         <main className="flex w-full flex-col items-center">
-            <section className="flex w-full flex-col items-center justify-center gap-6 px-4 md:max-w-7xl md:flex-row md:items-start">
+            <section className="flex w-full flex-col items-center justify-center gap-6 px-4 lg:max-w-7xl lg:flex-row lg:items-start">
                 <Filter onSearch={handleSearch} />
-                <ShipmentIndex shipments={filtered} loading={loading} />
+                <ShipmentIndex
+                    shipments={filtered}
+                    loading={loading}
+                    onOpenModal={openModal}
+                />
+                {selectedShipment && (
+                    <ShipmentModal
+                        shipment={selectedShipment}
+                        onClose={closeModal}
+                    />
+                )}
             </section>
         </main>
     )
