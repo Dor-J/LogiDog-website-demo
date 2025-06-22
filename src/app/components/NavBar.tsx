@@ -13,7 +13,7 @@ function NavBar() {
                 <ul className="flex space-x-6">
                     <li
                         className={clsx(
-                            'px-4 py-2 hover:text-blue-200 hover:underline' +
+                            'border-4 border-transparent px-4 py-2 hover:text-blue-200 hover:underline' +
                                 (pathname === '/'
                                     ? ' border-4 border-blue-800'
                                     : '')
@@ -23,9 +23,9 @@ function NavBar() {
                     </li>
                     <li
                         className={clsx(
-                            'px-4 py-2 hover:text-blue-200 hover:underline' +
+                            'border-4 border-transparent px-4 py-2 hover:text-blue-200 hover:underline' +
                                 (pathname === '/dashboard'
-                                    ? ' border-4 border-blue-800'
+                                    ? ' border-blue-800'
                                     : '')
                         )}
                     >
@@ -33,9 +33,9 @@ function NavBar() {
                     </li>
                     <li
                         className={clsx(
-                            'px-4 py-2 hover:text-blue-200 hover:underline' +
+                            'border-4 border-transparent px-4 py-2 hover:text-blue-200 hover:underline' +
                                 (pathname === '/contact'
-                                    ? ' border-4 border-blue-800'
+                                    ? ' border-blue-800'
                                     : '')
                         )}
                     >
