@@ -11,7 +11,7 @@
     2. Filtering and Search Capabilities
     3. Visual Indicators.
 
-        Dashboard in displayed in the dashboard page
+        Dashboard in displayed in the dashboard page and also a png
 
 > Real-time Data Updates: Choose a communication approach to
 > ensure the dashboard data is as up-to-date as possible. Explain
@@ -27,3 +27,7 @@
 > Would you prefer a Normalized or Denormalized structure?
 > Provide a brief example. Explain the advantages of your chosen
 > approach for this scenario.
+
+    (Personaly coming from a java and sql background I think the data should be normalized and using a sql based database like postgress, but for MVP using a NoSQL database like MongoDB and Denormalized data meaning object models is possibly too.)
+    For displaying the data on screen I think a table would have the best UX letting the users use the website that is intuitive to them and easy to filter their data and get insights.
+    My chosen approch is displaying the data in a table as can be seen on the Dashboard page
