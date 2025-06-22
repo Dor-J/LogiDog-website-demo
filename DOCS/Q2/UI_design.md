@@ -18,6 +18,10 @@
 > your chosen approach and justify why it's the best fit for this
 > system.
 
+    In order to design the real time data updates architecture we must consider the payloads, uptime and distribusion requirments of the system,
+    The system need to handle minions of updates events each day through the datapipes and on the server monitor and approve events and also update the clients on updates. So the architecture needs to include a load balancer connected to a few lamda instances or docker with service worker that process the data and by using a pub sub system each client subscrible to updates on he's shipments and get them in almost realtime with using sockets like socket.io and a client service worker ready to listen to push events from the server/lamda updating the client UI in neer realtime.
+    Also its very important that after initial processing the data goes theough ETL (extract ,tranform, load) so the data is stored in a data warehouse or a data lake.
+
 > Data Structure for Display: Which data structure (schema) is
 > most suitable for displaying this type of data on the screen?
 > Would you prefer a Normalized or Denormalized structure?
