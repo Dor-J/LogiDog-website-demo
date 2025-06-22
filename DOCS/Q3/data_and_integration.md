@@ -15,3 +15,12 @@
 
 > API Design: Please design an API that will serve the client. Focus on input and
 > output format and communication protocol.
+
+    I implemented a RestAPI for GET, POST and GET{id}
+    I implemented it usign the Next.js api route conventions using NextResponse and NextRequest and used an async data srore to use as DB for this example.
+
+    The GET is also has filter applied on it but this can also be done on the client side to displya to do user the data he needs and not all of it. also The GET uses search params so it can also retrieve a specific shipment by url, this however is currently not implemented on the site demo.
+
+    as can seen in the files:
+    src\app\dashboard\api\shipments\route.ts
+    src\app\dashboard\api\shipments\[id]\route.ts
