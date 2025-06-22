@@ -31,16 +31,6 @@ function NavBar() {
                     >
                         <Link href="/dashboard">Dashboard</Link>
                     </li>
-                    <li
-                        className={clsx(
-                            'border-4 border-transparent px-4 py-2 hover:text-blue-200 hover:underline' +
-                                (pathname === '/contact'
-                                    ? ' border-blue-800'
-                                    : '')
-                        )}
-                    >
-                        <Link href="/contact">Contact</Link>
-                    </li>
                 </ul>
             </nav>
         </div>
