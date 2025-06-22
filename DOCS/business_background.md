@@ -1,6 +1,6 @@
 #### Navigation back to main readme
 
-[Back to README](../../README.md)
+[Back to README](../README.md)
 
 # Business background
 
