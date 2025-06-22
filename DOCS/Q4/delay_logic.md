@@ -1,3 +1,7 @@
+#### Navigation back to main readme
+
+[Back to README](../../README.md)
+
 # Implement Delay Logic
 
 > Write a small code snippet (in any language of your choice) that:

@@ -1,3 +1,7 @@
+#### Navigation back to main readme
+
+[Back to README](../../README.md)
+
 # Sample Data and Integration
 
 > Fictitious Data Creation: Create a data table (JSON or SQL table(s)) for at least

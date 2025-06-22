@@ -1,3 +1,7 @@
+#### Navigation back to main readme
+
+[Back to README](../../README.md)
+
 # User Interface (UX/UI) Design for a Primary Alerts Screen
 
 > Visual Design: Design a single blocks screen (Dashboard) for the system (you

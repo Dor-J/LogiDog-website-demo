@@ -1,3 +1,7 @@
+#### Navigation back to main readme
+
+[Back to README](../../README.md)
+
 # In-Depth Problem Understanding and Logical Solution Proposal
 
 > Analysis of Delay Factors: Briefly describe the common and potential causes of shipment delays for a logistics company of this scale.
