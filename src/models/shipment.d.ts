@@ -29,8 +29,8 @@ export interface Shipment {
     _id: string //shipmentId
 
     // Geography
-    originCountry: string // ISO-2 or ISO-3 code
-    originPort?: string // UN/LOCODE
+    originCountry: string
+    originPort?: string
     destinationCountry: string
     destinationPort: string
 
