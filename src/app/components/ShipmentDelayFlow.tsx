@@ -47,7 +47,7 @@ const ArrowRightIcon: React.FC<{ className?: string }> = ({ className }) => (
 const FlowChartItem: React.FC<React.PropsWithChildren<object>> = ({
     children
 }) => (
-    <div className="inline-block rounded-2xl border border-gray-400 bg-sky-50 px-4 py-2 text-center shadow-sm hover:bg-white">
+    <div className="animate-fadeIn inline-block rounded-2xl border border-gray-400 bg-sky-50 px-4 py-2 text-center shadow-sm hover:bg-white">
         {children}
     </div>
 )
@@ -71,14 +71,14 @@ const ShipmentDelayFlow: React.FC = () => {
                     <FlowChartItem>
                         START – Shipment update / event received
                     </FlowChartItem>
-                    <div className="h-6 w-6 text-center text-gray-500">
+                    <div className="animate-fadeIn h-6 w-6 text-center text-gray-500">
                         <ArrowDownIcon />
                     </div>
                     {/* Row 1 – initial check Delivered? */}
                     <FlowChartItem>1. Already Delivered?</FlowChartItem>
                     {/* Yes / No split */}
-                    <div className="flex flex-col items-center gap-4 md:flex-row">
-                        {/* YES → END */}
+                    <div className="animate-fadeIn flex flex-col items-center gap-4 md:flex-row">
+                        {/* YES then END */}
                         <div className="flex flex-col items-center gap-2">
                             <span className="text-sm font-semibold">(Yes)</span>
                             <div className="hidden h-5 w-5 text-gray-500 md:block">
@@ -94,12 +94,12 @@ const ShipmentDelayFlow: React.FC = () => {
                         <div className="hidden h-0.5 w-16 bg-gray-400 md:block" />
 
                         {/* NO - Compute delta */}
-                        <div className="flex flex-col items-center gap-2">
+                        <div className="animate-fadeIn flex flex-col items-center gap-2">
                             <span className="text-sm font-semibold">(No)</span>
                             <div className="hidden h-5 w-5 text-gray-500 md:block">
                                 <ArrowRightIcon />
                             </div>
-                            <div className="h-5 w-5 text-gray-500 md:hidden">
+                            <div className="animate-fadeIn h-5 w-5 text-gray-500 md:hidden">
                                 <ArrowDownIcon />
                             </div>
                             <FlowChartItem>
@@ -110,7 +110,7 @@ const ShipmentDelayFlow: React.FC = () => {
                         </div>
                     </div>
                     {/* Row 2 – Buffer lookup */}
-                    <div className="h-6 w-6 text-gray-500">
+                    <div className="animate-fadeIn h-6 w-6 text-gray-500">
                         <ArrowDownIcon />
                     </div>
                     <FlowChartItem>
@@ -126,7 +126,7 @@ const ShipmentDelayFlow: React.FC = () => {
                     {/* Yes / No split */}
                     <div className="flex flex-col items-center gap-4 md:flex-row">
                         {/* YES - High Risk */}
-                        <div className="flex flex-col items-center gap-2">
+                        <div className="animate-fadeIn flex flex-col items-center gap-2">
                             <span className="text-sm font-semibold">(Yes)</span>
                             <div className="hidden h-5 w-5 text-gray-500 md:block">
                                 <ArrowRightIcon />
@@ -146,7 +146,7 @@ const ShipmentDelayFlow: React.FC = () => {
                         <div className="hidden h-0.5 w-16 bg-gray-400 md:block" />
 
                         {/* NO - Is stagnant? */}
-                        <div className="flex flex-col items-center gap-2">
+                        <div className="animate-fadeIn flex flex-col items-center gap-2">
                             <span className="text-sm font-semibold">(No)</span>
                             <div className="hidden h-5 w-5 text-gray-500 md:block">
                                 <ArrowRightIcon />
@@ -162,7 +162,7 @@ const ShipmentDelayFlow: React.FC = () => {
                         </div>
                     </div>
                     {/* Row 4 – Stagnant branch */}
-                    <div className="h-6 w-6 text-gray-500">
+                    <div className="animate-fadeIn h-6 w-6 text-gray-500">
                         <ArrowDownIcon />
                     </div>
                     <FlowChartItem>
@@ -171,7 +171,7 @@ const ShipmentDelayFlow: React.FC = () => {
                         <span className="italic">‘Stagnant’</span> Alert
                     </FlowChartItem>
                     {/* Row 5 – External Check */}{' '}
-                    <div className="h-6 w-6 text-gray-500">
+                    <div className="animate-fadeIn h-6 w-6 text-gray-500">
                         <ArrowDownIcon />
                     </div>
                     <FlowChartItem>
