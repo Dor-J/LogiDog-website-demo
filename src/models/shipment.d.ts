@@ -23,10 +23,10 @@ export interface ExternalContext {
 }
 
 export interface Shipment {
-    // Party IDs or codes
+    //  IDs
+    _id: string //shipmentId
     buyerId: string
     sellerId: string
-    _id: string //shipmentId
 
     // Geography
     originCountry: string
@@ -34,7 +34,7 @@ export interface Shipment {
     destinationCountry: string
     destinationPort: string
 
-    // Logistics basics
+    // Logistics
     mode: ShipmentMode
     productIds: string[]
     carrier: string
