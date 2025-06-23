@@ -14,32 +14,39 @@ export async function GET(request: NextRequest) {
     const origin = searchParams.get('origin')
     const destination = searchParams.get('destination')
 
-    let shipments = await storageService.query<Shipment>(ENTITY_TYPE)
+    try {
+        let shipments = await storageService.query<Shipment>(ENTITY_TYPE)
 
-    if (riskLevel && riskLevel !== 'All') {
-        shipments = shipments.filter(
-            (s) => (s.riskLevel ?? 'None') === riskLevel
-        )
-    }
-    if (mode && mode !== 'All') {
-        shipments = shipments.filter(
-            (s) => s.mode.toLowerCase() === mode.toLowerCase()
-        )
-    }
-    if (origin) {
-        shipments = shipments.filter((s) =>
-            s.originCountry.toLowerCase().includes(origin.toLowerCase())
-        )
-    }
-    if (destination) {
-        shipments = shipments.filter((s) =>
-            s.destinationCountry
-                .toLowerCase()
-                .includes(destination.toLowerCase())
-        )
-    }
+        if (riskLevel && riskLevel !== 'All') {
+            shipments = shipments.filter(
+                (s) => (s.riskLevel ?? 'None') === riskLevel
+            )
+        }
+        if (mode && mode !== 'All') {
+            shipments = shipments.filter(
+                (s) => s.mode.toLowerCase() === mode.toLowerCase()
+            )
+        }
+        if (origin) {
+            shipments = shipments.filter((s) =>
+                s.originCountry.toLowerCase().includes(origin.toLowerCase())
+            )
+        }
+        if (destination) {
+            shipments = shipments.filter((s) =>
+                s.destinationCountry
+                    .toLowerCase()
+                    .includes(destination.toLowerCase())
+            )
+        }
 
-    return NextResponse.json(shipments)
+        return NextResponse.json(shipments)
+    } catch {
+        return NextResponse.json(
+            { error: 'Shipments not found' },
+            { status: 500 }
+        )
+    }
 }
 
 export async function POST(request: NextRequest) {
@@ -47,7 +54,7 @@ export async function POST(request: NextRequest) {
         const shipmentData = (await request.json()) as Omit<Shipment, '_id'>
         // TODOs: Here validation for shipmentData
 
-        // Create new shipment with storageService
+        // Create new shipment
         const newShipment = await storageService.post<Shipment>(
             ENTITY_TYPE,
             shipmentData
