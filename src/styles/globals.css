@@ -7,6 +7,21 @@
     main {
         @apply pr-2 pl-2;
     }
+
+    /* Fade-in keyframes */
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+
+    /* Fade-in animation utility */
+    .animate-fadeIn {
+        animation: fadeIn 1s ease-in forwards;
+    }
 }
 
 @theme {
