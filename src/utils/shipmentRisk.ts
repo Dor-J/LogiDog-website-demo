@@ -27,6 +27,7 @@ export function isShipmentAtRisk(
         (deliveryDate.getTime() - now.getTime()) / oneDayInMs
 
     if (
+        // Trigger if less than 7 days and not yet deliverd
         daysUntilDelivery <= daysThreshold &&
         shipment.currentStage !== 'Delivered'
     ) {
@@ -66,9 +67,29 @@ export function isShipmentAtRiskTest() {
     } as Shipment
 
     // Test calls
-    console.log('Shipment 1: ', isShipmentAtRisk(shipment1)) // true (3 days, not delivered)
-    console.log('Shipment 2: ', isShipmentAtRisk(shipment2)) // false (10 days, not delivered)
-    console.log('Shipment 3: ', isShipmentAtRisk(shipment3)) // false (2 days but delivered)
-    console.log('Shipment 4: ', isShipmentAtRisk(shipment4)) // true (2 days not delivered)
-    console.log('Shipment 5: ', isShipmentAtRisk(shipment5)) // true (2 days not delivered)
+    console.log(
+        'Shipment 1: ',
+        isShipmentAtRisk(shipment1),
+        'true (3 days, not delivered)'
+    )
+    console.log(
+        'Shipment 2: ',
+        isShipmentAtRisk(shipment2),
+        'false (10 days, not delivered)'
+    )
+    console.log(
+        'Shipment 3: ',
+        isShipmentAtRisk(shipment3),
+        'false (2 days but delivered)'
+    )
+    console.log(
+        'Shipment 4: ',
+        isShipmentAtRisk(shipment4),
+        'true (2 days not delivered)'
+    )
+    console.log(
+        'Shipment 5: ',
+        isShipmentAtRisk(shipment5),
+        'true (2 days not delivered)'
+    )
 }
