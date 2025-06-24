@@ -5,8 +5,8 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 
 export const metadata: Metadata = {
-    title: "Dor's assignment",
-    description: 'Assesment for junior intern assignment',
+    title: 'LogiDog project',
+    description: 'Example website for logistics saas',
     icons: [{ rel: 'icon', url: '/favicon.ico' }]
 }
 
