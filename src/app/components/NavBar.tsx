@@ -11,17 +11,24 @@ function NavBar() {
 
     return (
         <div>
-            <nav className="flex items-center justify-center space-x-4">
-                <ul className="flex space-x-6">
+            <nav aria-label="Primary navigation">
+                <ul className="flex items-center space-x-6">
                     {Object.entries(routes).map(([path, label]) => (
-                        <li
-                            key={path}
-                            className={clsx(
-                                'border-4 border-transparent px-4 py-2 hover:text-blue-200 hover:underline',
-                                pathname === path ? 'border-blue-800' : ''
-                            )}
-                        >
-                            <Link href={path}>{label}</Link>
+                        <li key={path}>
+                            <Link
+                                href={path}
+                                className={clsx(
+                                    'relative inline-block px-3 py-2 transition-colors duration-300',
+                                    pathname === path
+                                        ? 'text-white before:absolute before:-bottom-1 before:left-0 before:h-0.5 before:w-full before:bg-white'
+                                        : 'text-emerald-300 hover:text-white'
+                                )}
+                                aria-current={
+                                    pathname === path ? 'page' : undefined
+                                }
+                            >
+                                {label}
+                            </Link>
                         </li>
                     ))}
                 </ul>
