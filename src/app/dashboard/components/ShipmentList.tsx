@@ -45,23 +45,25 @@ const ShipmentList: React.FC<Props> = ({ shipments, loading, onOpenModal }) => {
                     key={s._id}
                     className="group bg-white transition even:bg-blue-50/50 hover:bg-blue-50"
                 >
-                    <td className="max-w-[110px] truncate px-3 py-3 font-mono text-xs text-gray-700">
+                    <td className="max-w-24 truncate px-3 py-3 font-mono text-xs text-gray-700">
                         {s._id}
                     </td>
-                    <td className="flex items-center justify-center px-3 py-3">
-                        <span
-                            className={`rounded-md px-2 py-1 text-xs font-semibold shadow-sm ${
-                                s.riskLevel === 'High'
-                                    ? 'bg-red-500 text-white'
-                                    : s.riskLevel === 'Medium'
-                                      ? 'bg-amber-400 text-white'
-                                      : s.riskLevel === 'Low'
-                                        ? 'bg-green-500 text-white'
-                                        : 'border border-gray-400 bg-gray-100 text-gray-700'
-                            }`}
-                        >
-                            {s.riskLevel}
-                        </span>
+                    <td className="px-3 py-3">
+                        <div className="flex items-center justify-center">
+                            <span
+                                className={`rounded-md px-2 py-1 text-xs font-semibold shadow-sm ${
+                                    s.riskLevel === 'High'
+                                        ? 'bg-red-500 text-white'
+                                        : s.riskLevel === 'Medium'
+                                          ? 'bg-amber-400 text-white'
+                                          : s.riskLevel === 'Low'
+                                            ? 'bg-green-500 text-white'
+                                            : 'border border-gray-400 bg-gray-100 text-gray-700'
+                                }`}
+                            >
+                                {s.riskLevel}
+                            </span>
+                        </div>
                     </td>
                     <td className="hidden px-3 py-3 text-sm text-gray-700 sm:table-cell">
                         {s.currentStage}
@@ -77,13 +79,15 @@ const ShipmentList: React.FC<Props> = ({ shipments, loading, onOpenModal }) => {
                             ? new Date(s.deliveryPlanned).toLocaleDateString()
                             : 'N/A'}
                     </td>
-                    <td className="flex items-center justify-center px-2 py-3">
-                        <button
-                            onClick={() => onOpenModal(s)}
-                            className="rounded-lg bg-sky-500 px-3 py-1.5 font-medium text-white shadow transition-all hover:bg-sky-600 focus:ring-2 focus:ring-sky-300 focus:outline-none active:scale-95"
-                        >
-                            View
-                        </button>
+                    <td className="px-3 py-3">
+                        <div className="flex items-center justify-center">
+                            <button
+                                onClick={() => onOpenModal(s)}
+                                className="rounded-lg bg-sky-500 px-3 py-2 font-medium text-white shadow transition-all hover:bg-sky-600 focus:ring-2 focus:ring-sky-300 focus:outline-none active:scale-95"
+                            >
+                                View
+                            </button>
+                        </div>
                     </td>
                 </tr>
             ))}
