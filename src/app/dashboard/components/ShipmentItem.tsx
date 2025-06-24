@@ -5,150 +5,168 @@ interface Props {
     shipment: Shipment
 }
 
+const Section: React.FC<{ title: string; children: React.ReactNode }> = ({
+    title,
+    children
+}) => (
+    <section className="mb-6">
+        <h3 className="mb-3 border-b border-blue-100 pb-1 text-lg font-semibold text-blue-900">
+            {title}
+        </h3>
+        <ul className="space-y-2">{children}</ul>
+    </section>
+)
+
 const ShipmentItem: React.FC<Props> = ({ shipment }) => {
     return (
-        <article className="flex h-3/4 flex-col space-y-4 py-4">
-            <h2 className="text-center text-2xl font-bold">Shipment details</h2>
+        <article className="mx-auto mt-8 max-w-xl space-y-6 rounded-2xl border border-blue-100 bg-white p-6 shadow-xl">
+            <h2 className="mb-2 text-center text-2xl font-bold text-blue-800">
+                Shipment Details
+            </h2>
 
-            <ul>
-                <ul>
-                    {/* General info list */}
-                    <li className="flex items-center justify-between">
-                        Shipment ID <span>{shipment._id}</span>
-                    </li>
-                    <li className="flex items-center justify-between">
-                        Buyer ID <span>{shipment.buyerId}</span>
-                    </li>
-                    <li className="flex items-center justify-between">
-                        Seller ID <span>{shipment.sellerId}</span>
-                    </li>
-                </ul>
-                <ul>
-                    {/* Geography info */}
-                    <li className="flex items-center justify-between">
-                        Origin Country{' '}
-                        <span>{shipment.originCountry}</span>{' '}
-                    </li>
-                    <li className="flex items-center justify-between">
-                        Origin Port{' '}
-                        <span>{shipment.originPort ?? 'Unknown'}</span>
-                    </li>
-                    <li className="flex items-center justify-between">
-                        Destination Country{' '}
-                        <span>{shipment.destinationCountry}</span>
-                    </li>
-                    <li className="flex items-center justify-between">
-                        Destination Port <span>{shipment.destinationPort}</span>
-                    </li>
-                </ul>
-                <ul>
-                    {/* Logistics info */}
-                    <li className="flex items-center justify-between">
-                        Transportation mode <span>{shipment.mode}</span>
-                    </li>
-                    <li className="flex items-center justify-between">
-                        ProductIds <span>{shipment.productIds.join(', ')}</span>
-                    </li>
-                    <li className="flex items-center justify-between">
-                        Carrier <span>{shipment.carrier}</span>
-                    </li>
-                </ul>
-                <ul>
-                    {/* Transport timeline  */}
-                    <li className="flex items-center justify-between">
-                        Purchase Date{' '}
-                        <span>{shipment.purchaseDate ?? 'Undefined'}</span>
-                    </li>
-                    <li className="flex items-center justify-between">
-                        Dispatch - Planned{' '}
-                        <span>{shipment.dispatchPlanned ?? '?'}</span>
-                    </li>
-                    <li className="flex items-center justify-between">
-                        Dispatch - Actual{' '}
-                        <span>{shipment.dispatchActual ?? '?'}</span>
-                    </li>
-                    <li className="flex items-center justify-between">
-                        Arrival Country - Planned{' '}
-                        <span>{shipment.arrivalCountryPlanned ?? '?'}</span>
-                    </li>
-                    <li className="flex items-center justify-between">
-                        Arrival Country - Actual{' '}
-                        <span>{shipment.arrivalCountryActual ?? '?'}</span>
-                    </li>
-                    <li className="flex items-center justify-between">
-                        Customs Arrival - Planned{' '}
-                        <span>{shipment.customsArrivalPlanned ?? '?'}</span>
-                    </li>
-                    <li className="flex items-center justify-between">
-                        Customs Arrival - Actual{' '}
-                        <span>{shipment.customsArrivalActual ?? '?'}</span>
-                    </li>
-                    <li className="flex items-center justify-between">
-                        Customs Detain Timestamp{' '}
-                        <span>{shipment.customsDetainTimestamp ?? '?'}</span>
-                    </li>
-                    <li className="flex items-center justify-between">
-                        Customs Clear - Planned{' '}
-                        <span>{shipment.customsClearPlanned ?? '?'}</span>
-                    </li>
-                    <li className="flex items-center justify-between">
-                        Customs Clear - Actual{' '}
-                        <span>{shipment.customsClearActual ?? '?'}</span>
-                    </li>
-                    <li className="flex items-center justify-between">
-                        Arrival Logistic Center - Planned{' '}
-                        <span>{shipment.toLogisticCenterPlanned ?? '?'}</span>
-                    </li>
-                    <li className="flex items-center justify-between">
-                        Arrival Logistic Center - Actual{' '}
-                        <span>{shipment.toLogisticCenterActual ?? '?'}</span>
-                    </li>
-                    <li className="flex items-center justify-between">
-                        Arrival to Consumer - Planned{' '}
-                        <span>{shipment.toConsumerPlanned ?? '?'}</span>
-                    </li>
-                    <li className="flex items-center justify-between">
-                        Arrival to Consumer - Actual{' '}
-                        <span>{shipment.toConsumerActual ?? '?'}</span>
-                    </li>
-                    <li className="flex items-center justify-between">
-                        Delivery - Planned{' '}
-                        <span>{shipment.deliveryPlanned ?? '?'}</span>
-                    </li>
-                    <li className="flex items-center justify-between">
-                        Delivery - Actual{' '}
-                        <span>{shipment.deliveryActual ?? '?'}</span>
-                    </li>
-                </ul>
-                <ul>
-                    {/* ETA & revisions */}
-                    <li>
-                        ETA Destination Country{' '}
-                        <span>{shipment.etaDestinationCountry ?? '?'}</span>
-                    </li>
-                    <li>
-                        {/* this is a calculated field ssr*/}
-                        ETA Revisions{' '}
-                        <span>{shipment?.etaRevisions?.join(', ') ?? '?'}</span>
-                    </li>
-                    <li>
-                        {/* this is a calculated field ssr*/}
-                        current Stage <span>{shipment.currentStage}</span>
-                    </li>
-                </ul>
-                <ul>
-                    {/* Risk assessment and Contextual risk factors */}
-                    <li>
-                        riskLevel <span>{shipment.riskLevel ?? '?'}</span>
-                    </li>
-                    <li>
-                        externalContext{' '}
-                        <pre>
-                            {JSON.stringify(shipment.externalContext, null, 2)}
-                        </pre>
-                    </li>
-                </ul>
-            </ul>
+            <Section title="General">
+                <li className="flex justify-between">
+                    <span className="text-gray-600">Shipment ID</span>
+                    <span className="font-mono">{shipment._id}</span>
+                </li>
+                <li className="flex justify-between">
+                    <span className="text-gray-600">Buyer ID</span>
+                    <span>{shipment.buyerId}</span>
+                </li>
+                <li className="flex justify-between">
+                    <span className="text-gray-600">Seller ID</span>
+                    <span>{shipment.sellerId}</span>
+                </li>
+            </Section>
+
+            <Section title="Geography">
+                <li className="flex justify-between">
+                    <span>Origin Country</span>
+                    <span>{shipment.originCountry}</span>
+                </li>
+                <li className="flex justify-between">
+                    <span>Origin Port</span>
+                    <span>{shipment.originPort ?? 'Unknown'}</span>
+                </li>
+                <li className="flex justify-between">
+                    <span>Destination Country</span>
+                    <span>{shipment.destinationCountry}</span>
+                </li>
+                <li className="flex justify-between">
+                    <span>Destination Port</span>
+                    <span>{shipment.destinationPort}</span>
+                </li>
+            </Section>
+
+            <Section title="Logistics">
+                <li className="flex justify-between">
+                    <span>Transportation mode</span>
+                    <span>{shipment.mode}</span>
+                </li>
+                <li className="flex justify-between">
+                    <span>Product IDs</span>
+                    <span>{shipment.productIds.join(', ')}</span>
+                </li>
+                <li className="flex justify-between">
+                    <span>Carrier</span>
+                    <span>{shipment.carrier}</span>
+                </li>
+            </Section>
+
+            <Section title="Timeline">
+                <li className="flex justify-between">
+                    <span>Purchase Date</span>{' '}
+                    <span>{shipment.purchaseDate ?? 'Undefined'}</span>
+                </li>
+                <li className="flex justify-between">
+                    <span>Dispatch - Planned</span>{' '}
+                    <span>{shipment.dispatchPlanned ?? '?'}</span>
+                </li>
+                <li className="flex justify-between">
+                    <span>Dispatch - Actual</span>{' '}
+                    <span>{shipment.dispatchActual ?? '?'}</span>
+                </li>
+                <li className="flex justify-between">
+                    <span>Arrival Country - Planned</span>{' '}
+                    <span>{shipment.arrivalCountryPlanned ?? '?'}</span>
+                </li>
+                <li className="flex justify-between">
+                    <span>Arrival Country - Actual</span>{' '}
+                    <span>{shipment.arrivalCountryActual ?? '?'}</span>
+                </li>
+                <li className="flex justify-between">
+                    <span>Customs Arrival - Planned</span>{' '}
+                    <span>{shipment.customsArrivalPlanned ?? '?'}</span>
+                </li>
+                <li className="flex justify-between">
+                    <span>Customs Arrival - Actual</span>{' '}
+                    <span>{shipment.customsArrivalActual ?? '?'}</span>
+                </li>
+                <li className="flex justify-between">
+                    <span>Customs Detain Timestamp</span>{' '}
+                    <span>{shipment.customsDetainTimestamp ?? '?'}</span>
+                </li>
+                <li className="flex justify-between">
+                    <span>Customs Clear - Planned</span>{' '}
+                    <span>{shipment.customsClearPlanned ?? '?'}</span>
+                </li>
+                <li className="flex justify-between">
+                    <span>Customs Clear - Actual</span>{' '}
+                    <span>{shipment.customsClearActual ?? '?'}</span>
+                </li>
+                <li className="flex justify-between">
+                    <span>Arrival Logistic Center - Planned</span>{' '}
+                    <span>{shipment.toLogisticCenterPlanned ?? '?'}</span>
+                </li>
+                <li className="flex justify-between">
+                    <span>Arrival Logistic Center - Actual</span>{' '}
+                    <span>{shipment.toLogisticCenterActual ?? '?'}</span>
+                </li>
+                <li className="flex justify-between">
+                    <span>Arrival to Consumer - Planned</span>{' '}
+                    <span>{shipment.toConsumerPlanned ?? '?'}</span>
+                </li>
+                <li className="flex justify-between">
+                    <span>Arrival to Consumer - Actual</span>{' '}
+                    <span>{shipment.toConsumerActual ?? '?'}</span>
+                </li>
+                <li className="flex justify-between">
+                    <span>Delivery - Planned</span>{' '}
+                    <span>{shipment.deliveryPlanned ?? '?'}</span>
+                </li>
+                <li className="flex justify-between">
+                    <span>Delivery - Actual</span>{' '}
+                    <span>{shipment.deliveryActual ?? '?'}</span>
+                </li>
+            </Section>
+
+            <Section title="ETA & Revisions">
+                <li className="flex justify-between">
+                    <span>ETA Destination Country</span>
+                    <span>{shipment.etaDestinationCountry ?? '?'}</span>
+                </li>
+                <li className="flex justify-between">
+                    <span>ETA Revisions</span>
+                    <span>{shipment?.etaRevisions?.join(', ') ?? '?'}</span>
+                </li>
+                <li className="flex justify-between">
+                    <span>Current Stage</span>
+                    <span>{shipment.currentStage}</span>
+                </li>
+            </Section>
+
+            <Section title="Risk Assessment">
+                <li className="flex justify-between">
+                    <span>Risk Level</span>
+                    <span>{shipment.riskLevel ?? '?'}</span>
+                </li>
+                <li className="flex flex-col">
+                    <span>External Context</span>
+                    <pre className="mt-2 overflow-x-auto rounded-lg bg-blue-50 p-2 text-xs">
+                        {JSON.stringify(shipment.externalContext, null, 2)}
+                    </pre>
+                </li>
+            </Section>
         </article>
     )
 }
