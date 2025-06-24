@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import ThresholdTable from './ThresholdTable'
 
 const ArrowDownIcon: React.FC<{ className?: string }> = ({ className }) => (
     <svg
@@ -47,16 +48,16 @@ const ArrowRightIcon: React.FC<{ className?: string }> = ({ className }) => (
 const FlowChartItem: React.FC<React.PropsWithChildren<object>> = ({
     children
 }) => (
-    <div className="animate-fadeIn inline-block rounded-2xl border border-gray-400 bg-sky-50 px-4 py-2 text-center shadow-sm hover:bg-white">
+    <div className="animate-fadeIn inline-block max-w-xs min-w-[180px] rounded-xl border border-blue-200 bg-white px-4 py-2 text-center text-sm shadow-sm transition-all hover:bg-blue-50 md:text-base">
         {children}
     </div>
 )
 
 const ShipmentDelayFlow: React.FC = () => {
     return (
-        <section className="mt-auto flex w-full flex-col space-y-4">
-            <div className="mx-auto mt-4 mb-8">
-                <h2 className="mb-2 text-2xl font-bold md:text-3xl">
+        <section className="mx-auto mt-8 flex w-full max-w-3xl flex-col space-y-6 px-2 sm:px-6">
+            <div className="text center mx-auto mb-6">
+                <h2 className="mb-2 text-2xl font-bold text-blue-900 md:text-3xl">
                     Early-Delay Flowchart
                 </h2>
                 <p className="text-base text-gray-700">
@@ -65,43 +66,50 @@ const ShipmentDelayFlow: React.FC = () => {
                 </p>
             </div>
 
-            <div id="flowchart" className="overflow-x-auto">
-                <div className="flex flex-col items-center gap-4">
+            <div
+                id="flowchart"
+                className="overflow-x-auto rounded-2xl border border-blue-100 bg-blue-50 pb-2 shadow-inner"
+            >
+                <div className="flex min-w-[340px] flex-col items-center justify-center gap-4 py-8">
                     {/* Row 0 – START */}
                     <FlowChartItem>
                         START – Shipment update / event received
                     </FlowChartItem>
-                    <div className="animate-fadeIn h-6 w-6 text-center text-gray-500">
+                    <div className="h-6 w-6 text-center text-blue-400">
                         <ArrowDownIcon />
                     </div>
                     {/* Row 1 – initial check Delivered? */}
                     <FlowChartItem>1. Already Delivered?</FlowChartItem>
                     {/* Yes / No split */}
-                    <div className="animate-fadeIn flex flex-col items-center gap-4 md:flex-row">
+                    <div className="flex flex-col items-center gap-4 md:flex-row">
                         {/* YES then END */}
-                        <div className="flex flex-col items-center gap-2">
-                            <span className="text-sm font-semibold">(Yes)</span>
-                            <div className="hidden h-5 w-5 text-gray-500 md:block">
-                                <ArrowRightIcon />
+                        <div className="flex min-w-[120px] flex-col items-center gap-2">
+                            <span className="text-sm font-semibold text-gray-500">
+                                (Yes)
+                            </span>
+                            <div className="hidden md:block">
+                                <ArrowRightIcon className="h-5 w-5 text-blue-400" />
                             </div>
-                            <div className="h-5 w-5 text-gray-500 md:hidden">
-                                <ArrowDownIcon />
+                            <div className="md:hidden">
+                                <ArrowDownIcon className="h-5 w-5 text-blue-400" />
                             </div>
                             <FlowChartItem>END</FlowChartItem>
                         </div>
 
                         {/* Horizontal separator for md+ */}
-                        <div className="hidden h-0.5 w-16 bg-gray-400 md:block" />
+                        <div className="mx-2 hidden h-0.5 w-10 bg-blue-300 md:block" />
 
                         {/* NO - Compute delta */}
-                        <div className="animate-fadeIn flex flex-col items-center gap-2">
-                            <span className="text-sm font-semibold">(No)</span>
-                            <div className="hidden h-5 w-5 text-gray-500 md:block">
-                                <ArrowRightIcon />
-                            </div>
-                            <div className="animate-fadeIn h-5 w-5 text-gray-500 md:hidden">
-                                <ArrowDownIcon />
-                            </div>
+                        <div className="flex min-w-[180px] flex-col items-center gap-2">
+                            <span className="text-xs font-semibold text-gray-500">
+                                (No)
+                            </span>
+                            <span className="hidden md:block">
+                                <ArrowRightIcon className="h-5 w-5 text-blue-400" />
+                            </span>
+                            <span className="md:hidden">
+                                <ArrowDownIcon className="h-5 w-5 text-blue-400" />
+                            </span>
                             <FlowChartItem>
                                 2. Compute Days-to-ETA
                                 <br />
@@ -109,31 +117,30 @@ const ShipmentDelayFlow: React.FC = () => {
                             </FlowChartItem>
                         </div>
                     </div>
+
                     {/* Row 2 – Buffer lookup */}
-                    <div className="animate-fadeIn h-6 w-6 text-gray-500">
-                        <ArrowDownIcon />
-                    </div>
+                    <ArrowDownIcon className="h-6 w-6 text-blue-400" />
                     <FlowChartItem>
                         3. Lookup Minimum Buffer for Stage
                         <br />
                         <span className="italic">(MinDays(Stage))</span>
                     </FlowChartItem>
                     {/* Row 3 – Compare */}
-                    <div className="h-6 w-6 text-gray-500">
-                        <ArrowDownIcon />
-                    </div>
+                    <ArrowDownIcon className="h-6 w-6 text-blue-400" />
                     <FlowChartItem>4. Is delta ≤ MinDays(Stage)?</FlowChartItem>
                     {/* Yes / No split */}
-                    <div className="flex flex-col items-center gap-4 md:flex-row">
+                    <div className="flex w-full flex-col items-center gap-4 md:flex-row md:justify-center">
                         {/* YES - High Risk */}
-                        <div className="animate-fadeIn flex flex-col items-center gap-2">
-                            <span className="text-sm font-semibold">(Yes)</span>
-                            <div className="hidden h-5 w-5 text-gray-500 md:block">
-                                <ArrowRightIcon />
-                            </div>
-                            <div className="h-5 w-5 text-gray-500 md:hidden">
-                                <ArrowDownIcon />
-                            </div>
+                        <div className="flex min-w-[120px] flex-col items-center gap-2">
+                            <span className="text-xs font-semibold text-gray-500">
+                                (Yes)
+                            </span>
+                            <span className="hidden md:block">
+                                <ArrowRightIcon className="h-5 w-5 text-blue-400" />
+                            </span>
+                            <span className="md:hidden">
+                                <ArrowDownIcon className="h-5 w-5 text-blue-400" />
+                            </span>
                             <FlowChartItem>
                                 Trigger <strong>High-Risk</strong> Alert
                                 <br />
@@ -143,37 +150,40 @@ const ShipmentDelayFlow: React.FC = () => {
                             </FlowChartItem>
                         </div>
 
-                        <div className="hidden h-0.5 w-16 bg-gray-400 md:block" />
+                        <div className="mx-2 hidden h-0.5 w-10 bg-blue-300 md:block" />
 
                         {/* NO - Is stagnant? */}
-                        <div className="animate-fadeIn flex flex-col items-center gap-2">
-                            <span className="text-sm font-semibold">(No)</span>
-                            <div className="hidden h-5 w-5 text-gray-500 md:block">
-                                <ArrowRightIcon />
-                            </div>
-                            <div className="h-5 w-5 text-gray-500 md:hidden">
-                                <ArrowDownIcon />
-                            </div>
+                        <div className="flex min-w-[200px] flex-col items-center gap-2">
+                            <span className="text-xs font-semibold text-gray-500">
+                                (No)
+                            </span>
+                            <span className="hidden md:block">
+                                <ArrowRightIcon className="h-5 w-5 text-blue-400" />
+                            </span>
+                            <span className="md:hidden">
+                                <ArrowDownIcon className="h-5 w-5 text-blue-400" />
+                            </span>
                             <FlowChartItem>
                                 5. Is shipment <i>“Stagnant”</i>?<br />
-                                • No scan &gt; 24 h (air)
-                                <br />• No scan &gt; 48 h (ocean/road)
+                                <span className="whitespace-nowrap">
+                                    • No scan &gt; 24 h (air)
+                                </span>
+                                <br />
+                                <span className="whitespace-nowrap">
+                                    • No scan &gt; 48 h (ocean/road)
+                                </span>
                             </FlowChartItem>
                         </div>
                     </div>
                     {/* Row 4 – Stagnant branch */}
-                    <div className="animate-fadeIn h-6 w-6 text-gray-500">
-                        <ArrowDownIcon />
-                    </div>
+                    <ArrowDownIcon className="h-6 w-6 text-blue-400" />
                     <FlowChartItem>
                         ‘Yes’ → Trigger <b>Medium-Risk</b>
                         <br />
                         <span className="italic">‘Stagnant’</span> Alert
                     </FlowChartItem>
-                    {/* Row 5 – External Check */}{' '}
-                    <div className="animate-fadeIn h-6 w-6 text-gray-500">
-                        <ArrowDownIcon />
-                    </div>
+                    {/* Row 5 – External Check */}
+                    <ArrowDownIcon className="h-6 w-6 text-blue-400" />
                     <FlowChartItem>
                         6. External Check
                         <br />
@@ -182,9 +192,7 @@ const ShipmentDelayFlow: React.FC = () => {
                         </span>
                     </FlowChartItem>
                     {/* Row 6 – End / External */}
-                    <div className="h-6 w-6 text-gray-500">
-                        <ArrowDownIcon />
-                    </div>
+                    <ArrowDownIcon className="h-6 w-6 text-blue-400" />
                     <FlowChartItem>
                         Trigger <b>Medium/Low-Risk</b> ‘External’ Alert
                         <br />
@@ -193,66 +201,7 @@ const ShipmentDelayFlow: React.FC = () => {
                 </div>
             </div>
 
-            {/*  Threshold Table  */}
-            <div className="mx-auto mt-4 overflow-x-auto p-4">
-                <h3 className="mb-3 text-2xl font-semibold">Threshold Table</h3>
-                <p className="mb-3 text-gray-700">
-                    *The values presented here are rough estimates
-                </p>
-
-                <table className="min-w-max divide-y divide-gray-300 text-sm">
-                    <thead className="bg-gray-100">
-                        <tr>
-                            <th className="px-4 py-2 text-left font-medium text-gray-700">
-                                Stage
-                            </th>
-                            <th className="px-4 py-2 text-left font-medium text-gray-700">
-                                Typical Remaining Days
-                            </th>
-                            <th className="px-4 py-2 text-left font-medium text-gray-700">
-                                &quot;Stagnant&quot; Threshold
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody className="divide-y divide-gray-200 bg-sky-800 text-center text-white">
-                        <tr>
-                            <td className="px-4 py-2 text-start">
-                                Booked / Label Created
-                            </td>
-                            <td className="px-4 py-2">7&nbsp;d</td>
-                            <td className="px-4 py-2">24 h no update</td>
-                        </tr>
-                        <tr>
-                            <td className="px-4 py-2 text-start">
-                                In-Transit – Origin
-                            </td>
-                            <td className="px-4 py-2">5&nbsp;d</td>
-                            <td className="px-4 py-2">24 h</td>
-                        </tr>
-                        <tr>
-                            <td className="px-4 py-2 text-start">
-                                Customs Clearance
-                            </td>
-                            <td className="px-4 py-2">3&nbsp;d</td>
-                            <td className="px-4 py-2">48 h</td>
-                        </tr>
-                        <tr>
-                            <td className="px-4 py-2 text-start">
-                                In-Transit – Destination Hub
-                            </td>
-                            <td className="px-4 py-2">2&nbsp;d</td>
-                            <td className="px-4 py-2">24 h</td>
-                        </tr>
-                        <tr>
-                            <td className="px-4 py-2 text-start">
-                                Out for Delivery
-                            </td>
-                            <td className="px-4 py-2">0.5 d (12 h)</td>
-                            <td className="px-4 py-2">6 h</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            <ThresholdTable />
         </section>
     )
 }
