@@ -3,11 +3,16 @@ import NavBar from './NavBar'
 
 export default function Header() {
     return (
-        <header className="flex w-full items-center justify-between bg-emerald-600 pr-4 pl-4 text-white">
-            <div className="p-4">
-                <span className="text-xl font-bold">LogiDog</span>
+        <header className="w-full bg-emerald-700 text-white shadow-md">
+            <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+                {/* Logo */}
+                <div className="cursor-default text-2xl font-extrabold tracking-tight select-none">
+                    LogiDog
+                </div>
+
+                {/* Nav */}
+                <NavBar />
             </div>
-            <NavBar />
         </header>
     )
 }
