@@ -18,7 +18,7 @@ function Hero() {
 
             {/* HERO IMAGE */}
             <div className="relative mb-4 flex w-full items-center justify-center md:mb-0 md:w-1/2">
-                <div className="flex h-60 w-60 items-center justify-center overflow-hidden rounded-2xl bg-sky-200/50 shadow-2xl sm:h-96 sm:w-96 md:h-[350px] md:w-full">
+                <div className="relative flex h-60 w-60 items-center justify-center overflow-hidden rounded-2xl bg-sky-200/50 shadow-2xl sm:h-96 sm:w-96 md:h-[350px] md:w-full">
                     <Image
                         src={heroSectionImg}
                         alt="image of logistics and shipments"
