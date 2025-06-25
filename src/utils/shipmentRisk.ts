@@ -18,22 +18,39 @@ export function isShipmentAtRisk(
     shipment: Shipment,
     daysThreshold = 7
 ): boolean {
-    if (!shipment.deliveryPlanned) return false // no planned delivery date => abort
+    try {
+        if (
+            !shipment ||
+            typeof shipment !== 'object' ||
+            !shipment.deliveryPlanned ||
+            typeof shipment.deliveryPlanned !== 'string' ||
+            !shipment.currentStage
+        ) {
+            // Invalid input or missing required fields
+            return false
+        }
 
-    const now = new Date()
-    const deliveryDate = new Date(shipment.deliveryPlanned)
+        const now = new Date()
+        const deliveryDate = new Date(shipment.deliveryPlanned)
 
-    const daysUntilDelivery =
-        (deliveryDate.getTime() - now.getTime()) / oneDayInMs
+        if (isNaN(deliveryDate.getTime())) {
+            // Invalid deliveryPlanned date string
+            return false
+        }
 
-    if (
+        const daysUntilDelivery =
+            (deliveryDate.getTime() - now.getTime()) / oneDayInMs
+
         // Trigger if less than 7 days and not yet deliverd
-        daysUntilDelivery <= daysThreshold &&
-        shipment.currentStage !== 'Delivered'
-    ) {
-        return true
+        return (
+            daysUntilDelivery <= daysThreshold &&
+            shipment.currentStage !== 'Delivered'
+        )
+    } catch (error) {
+        // Log or handle error if desired
+        console.log(error)
+        return false
     }
-    return false
 }
 
 export function isShipmentAtRiskTest() {
