@@ -2,6 +2,7 @@
 import React from 'react'
 import type { Shipment } from '~/models/shipment'
 import ShipmentList from './ShipmentList'
+import Loader from '~/app/components/Loader'
 
 interface Props {
     shipments: Shipment[]
@@ -36,13 +37,22 @@ const ShipmentIndex: React.FC<Props> = ({
                         <th className="px-3 pr-2 text-center">Details</th>
                     </tr>
                 </thead>
-
-                <ShipmentList
-                    shipments={shipments}
-                    loading={loading}
-                    onOpenModal={onOpenModal}
-                />
             </table>
+            <table className="min-w-full table-fixed divide-y divide-gray-300 text-sm">
+                {loading ? (
+                    <></>
+                ) : (
+                    <ShipmentList
+                        shipments={shipments}
+                        onOpenModal={onOpenModal}
+                    />
+                )}
+            </table>
+            {loading ? (
+                <Loader ClassNameProp="w-full h-4xl flex items-center justify-center " />
+            ) : (
+                <></>
+            )}
         </section>
     )
 }
