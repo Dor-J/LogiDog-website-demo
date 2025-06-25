@@ -1,5 +1,3 @@
-'use client'
-
 import React from 'react'
 import ThresholdTable from './ThresholdTable'
 
@@ -56,7 +54,7 @@ const FlowChartItem: React.FC<React.PropsWithChildren<object>> = ({
 const ShipmentDelayFlow: React.FC = () => {
     return (
         <section className="mx-auto mt-8 flex w-full max-w-3xl flex-col space-y-6 px-2 sm:px-6">
-            <div className="text center mx-auto mb-6">
+            <div className="mx-auto mb-6 text-center">
                 <h2 className="mb-2 text-2xl font-bold text-blue-900 md:text-3xl">
                     Early-Delay Flowchart
                 </h2>
