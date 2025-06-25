@@ -32,7 +32,7 @@ function AtRiskShipments() {
             let data = await storageService.query<Shipment>(ENTITY_TYPE)
             if (!data.length) {
                 // If not seeded, fetch from JSON and seed
-                const res = await fetch('/public/assets/data/shipments.json')
+                const res = await fetch('/assets/data/shipments.json')
                 const json = (await res.json()) as Shipment[]
 
                 for (const shipment of json) {
