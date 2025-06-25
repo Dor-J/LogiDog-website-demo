@@ -1,28 +1,14 @@
 import React from 'react'
 import type { Shipment } from '~/models/shipment'
+import { formatDateSafe } from '../../../utils/formatDate'
 
 interface Props {
     shipments: Shipment[]
-    loading: boolean
+
     onOpenModal: (shipment: Shipment) => void
 }
 
-const ShipmentList: React.FC<Props> = ({ shipments, loading, onOpenModal }) => {
-    if (loading) {
-        return (
-            <tbody>
-                <tr>
-                    <td
-                        colSpan={7}
-                        className="rounded-b-xl bg-white py-8 text-center font-medium text-gray-400"
-                    >
-                        Loading…
-                    </td>
-                </tr>
-            </tbody>
-        )
-    }
-
+const ShipmentList: React.FC<Props> = ({ shipments, onOpenModal }) => {
     if (!shipments.length) {
         return (
             <tbody>
@@ -76,7 +62,7 @@ const ShipmentList: React.FC<Props> = ({ shipments, loading, onOpenModal }) => {
                     </td>
                     <td className="hidden px-3 py-3 text-center text-xs text-gray-500 lg:table-cell">
                         {s.deliveryPlanned
-                            ? new Date(s.deliveryPlanned).toLocaleDateString()
+                            ? formatDateSafe(s.deliveryPlanned)
                             : 'N/A'}
                     </td>
                     <td className="px-3 py-3">
