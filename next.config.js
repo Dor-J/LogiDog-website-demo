@@ -8,8 +8,8 @@ const isProd = process.env.NODE_ENV === 'production'
 /** @type {import("next").NextConfig} */
 const config = {
     output: 'export',
-    basePath: '/LogiDogWeb',
-    assetPrefix: '/LogiDogWeb/',
+    basePath: '/LogiDog-website-demo',
+    assetPrefix: '/LogiDog-website-demo/',
     images: {
         unoptimized: true // Disable Next.js image optimization for GitHub Pages
     }
