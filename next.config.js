@@ -5,6 +5,10 @@
 import './src/env.js'
 
 /** @type {import("next").NextConfig} */
-const config = { output: 'export', basePath: '/LogiDogWeb' }
+const config = {
+    output: 'export',
+    basePath: '/LogiDog-website-demo',
+    assetPrefix: '/LogiDog-website-demo/'
+}
 
 export default config
